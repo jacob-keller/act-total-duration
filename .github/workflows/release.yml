@@ -1,0 +1,38 @@
+name: Upload release artifacts
+
+on:
+  release:
+    types: [ created ]
+
+jobs:
+  generate:
+    name: Create release-artfiacts
+
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - uses: suisei-cn/actions-download-file@v1
+      id: actZip
+      name: Download Advanced Combat Tracker
+      with:
+        url: "https://github.com/EQAditu/AdvancedCombatTracker/releases/latest/download/ACTv3.zip"
+        target: ACTv3/
+    - name: Unzip ACT release zipfile
+      run: Expand-Archive -PassThru -Path 'ACTv3\ACTv3.zip' -DestinationPath 'ACTv3'
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 5.0.x
+    - name: Restore dependencies
+      run: dotnet restore
+    - name: Build
+      run: dotnet build --no-restore
+    - name: Test
+      run: dotnet test --no-build --verbosity normal
+    - name: Upload the artifacts
+      uses: skx/github-action-publish-binaries@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        args: 'bin\Release\ActTotalDuration.dll'
