@@ -20,7 +20,7 @@ jobs:
         url: "https://github.com/owner/repository/releases/latest/download/ACTv3.zip"
         target: ACTv3/
     - name: Unzip ACT release zipfile
-      run: Expand-Archive ACTv3.zip
+      run: Expand-Archive -Path ACTv3.zip
       working-directory: ./ACTv3
     - name: Setup .NET
       uses: actions/setup-dotnet@v1
