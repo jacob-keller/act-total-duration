@@ -20,8 +20,7 @@ jobs:
         url: "https://github.com/EQAditu/AdvancedCombatTracker/releases/latest/download/ACTv3.zip"
         target: ACTv3/
     - name: Unzip ACT release zipfile
-      run: Expand-Archive -Path ACTv3.zip
-      working-directory: ./ACTv3
+      run: Expand-Archive -PassThru -Path 'ACTv3\ACTv3.zip' -DestinationPath 'ACTv3'
     - name: Setup .NET
       uses: actions/setup-dotnet@v1
       with:
