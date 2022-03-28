@@ -17,7 +17,7 @@ jobs:
       id: actZip
       name: Download Advanced Combat Tracker
       with:
-        url: "https://github.com/owner/repository/releases/latest/download/ACTv3.zip"
+        url: "https://github.com/EQAditu/AdvancedCombatTracker/releases/latest/download/ACTv3.zip"
         target: ACTv3/
     - name: Unzip ACT release zipfile
       run: Expand-Archive -Path ACTv3.zip
