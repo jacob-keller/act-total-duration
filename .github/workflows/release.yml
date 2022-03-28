@@ -30,9 +30,11 @@ jobs:
       run: dotnet build --no-restore
     - name: Test
       run: dotnet test --no-build --verbosity normal
-    - name: Upload the artifacts
-      uses: skx/github-action-publish-binaries@master
+    - name: Upload the artifact
+      uses: actions/upload-release-asset@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        args: 'bin\Release\ActTotalDuration.dll'
+        asset_path: bin\Release\ActTotalDuration.dll
+        asset_name: ActTotalDuration.dll
+        asset_content_type: application/binary
