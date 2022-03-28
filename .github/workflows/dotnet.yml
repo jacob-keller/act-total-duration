@@ -18,10 +18,10 @@ jobs:
       name: Download Advanced Combat Tracker
       with:
         url: "https://github.com/owner/repository/releases/latest/download/ACTv3.zip"
-        target: ACTv3
+        target: ACTv3/
     - name: Unzip ACT release zipfile
-      run: 7z x ACTv3.zip
-      working-directory: ACTv3
+      run: Expand-Archive ACTv3.zip
+      working-directory: ./ACTv3
     - name: Setup .NET
       uses: actions/setup-dotnet@v1
       with:
