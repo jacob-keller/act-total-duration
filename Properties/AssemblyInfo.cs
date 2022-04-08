@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("ActTotalDuration")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Plugin for the Advanced Combat Tracker which adds a total duration field for encounters")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("ActTotalDuration")]
-[assembly: AssemblyCopyright("Copyright ©  2022")]
+[assembly: AssemblyCopyright("Copyright © 2022, Jacob Keller")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
