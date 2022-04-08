@@ -24,17 +24,17 @@ namespace ACT_Plugin
             EncounterData.ColumnDefs.Remove("TotalDuration");
             CombatantData.ColumnDefs.Remove("TotalDuration");
 
-            var EncounterDurationColumn = new EncounterData.ColumnDef("TotalDuration", true, "VARCHAR", "TotalDuration",
+            var EncounterDurationColumn = new EncounterData.ColumnDef("TotalDuration", true, "DOUBLE", "TotalDuration",
                 (Data) => { return GetDurationString(GetTotalEncounterDuration(Data)); },
-                (Data) => { return GetDurationString(GetTotalEncounterDuration(Data)); }
+                (Data) => { return GetDurationTotalSeconds(GetTotalEncounterDuration(Data)); }
                 );
 
             // Add the new column definition for the encounter
             EncounterData.ColumnDefs.Add("TotalDuration", EncounterDurationColumn);
 
-            var CombatantDurationColumn = new CombatantData.ColumnDef("TotalDuration", true, "VARCHAR", "TotalDuration",
+            var CombatantDurationColumn = new CombatantData.ColumnDef("TotalDuration", true, "DOUBLE", "TotalDuration",
                 (Data) => { return GetDurationString(GetTotalCombatantDuration(Data)); },
-                (Data) => { return GetDurationString(GetTotalCombatantDuration(Data)); },
+                (Data) => { return GetDurationTotalSeconds(GetTotalCombatantDuration(Data)); },
                 (Left, Right) => { return GetTotalCombatantDuration(Left).CompareTo(GetTotalCombatantDuration(Right)); }
                 );
 
@@ -83,6 +83,11 @@ namespace ACT_Plugin
             {
                 return Duration.ToString(@"mm\:ss\.f");
             }
+        }
+
+        private String GetDurationTotalSeconds(TimeSpan Duration)
+        {
+            return Duration.TotalSeconds.ToString();
         }
     }
 }
