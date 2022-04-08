@@ -20,6 +20,10 @@ namespace ACT_Plugin
             // Track the status label's reference in our private variable
             status = pluginStatusText;
 
+            // We don't remove the TotalDuration field during DeInitPlugin. Remove the fields now to prevent a conflict if we are re-initialising.
+            EncounterData.ColumnDefs.Remove("TotalDuration");
+            CombatantData.ColumnDefs.Remove("TotalDuration");
+
             var EncounterDurationColumn = new EncounterData.ColumnDef("TotalDuration", true, "VARCHAR", "TotalDuration",
                 (Data) => { return GetDurationString(GetTotalEncounterDuration(Data)); },
                 (Data) => { return GetDurationString(GetTotalEncounterDuration(Data)); }
