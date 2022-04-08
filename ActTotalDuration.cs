@@ -20,7 +20,7 @@ namespace ACT_Plugin
             // Track the status label's reference in our private variable
             status = pluginStatusText;
 
-            var EncounterDurationColumn = new EncounterData.ColumnDef("TotalDuration", false, "VARCHAR", "TotalDuration",
+            var EncounterDurationColumn = new EncounterData.ColumnDef("TotalDuration", true, "VARCHAR", "TotalDuration",
                 (Data) => { return GetDurationString(GetTotalEncounterDuration(Data)); },
                 (Data) => { return GetDurationString(GetTotalEncounterDuration(Data)); }
                 );
@@ -28,7 +28,7 @@ namespace ACT_Plugin
             // Add the new column definition for the encounter
             EncounterData.ColumnDefs.Add("TotalDuration", EncounterDurationColumn);
 
-            var CombatantDurationColumn = new CombatantData.ColumnDef("TotalDuration", false, "VARCHAR", "TotalDuration",
+            var CombatantDurationColumn = new CombatantData.ColumnDef("TotalDuration", true, "VARCHAR", "TotalDuration",
                 (Data) => { return GetDurationString(GetTotalCombatantDuration(Data)); },
                 (Data) => { return GetDurationString(GetTotalCombatantDuration(Data)); },
                 (Left, Right) => { return GetTotalCombatantDuration(Left).CompareTo(GetTotalCombatantDuration(Right)); }
